@@ -18,6 +18,7 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 // import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 // import { environment } from 'src/environments/environment';
 // import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -57,7 +58,9 @@ import { environment } from 'src/environments/environment';
     // provideAuth(() => getAuth()),
     // provideStorage(() => getStorage())
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
