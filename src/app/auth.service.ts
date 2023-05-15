@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,10 @@ export class AuthService {
   // do the following OR add this to tsconfig.json -> "strictPropertyInitialization": false
   user$: Observable<firebase.User | null>;
 
-  constructor(private afAuth: AngularFireAuth) { 
+  constructor(
+    private afAuth: AngularFireAuth, 
+    private route: ActivatedRoute, 
+    private router: Router) { 
     // afAuth.authState.subscribe(theUser => this.user = theUser); // before using as observable
     // need to unsubscribe using ngDestroy if we use this approach
 
@@ -19,6 +23,11 @@ export class AuthService {
   }
 
   login(){
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+    if (returnUrl) {
+      localStorage.setItem('returnUrl', returnUrl);      
+    }
+
     /**
      * old way using the firebase compat
      * https://www.youtube.com/watch?v=A-wSkZVxKzU&list=RDCMUClIFqsmxnwVNNlsvjH1D1Aw&start_radio=1&rv=A-wSkZVxKzU&t=551

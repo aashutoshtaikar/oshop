@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
+import { AuthGuardService as AuthGuard } from './auth-guard.service';
 // import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 // import { environment } from 'src/environments/environment';
 // import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -59,7 +60,8 @@ import { AuthService } from './auth.service';
     // provideStorage(() => getStorage())
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
